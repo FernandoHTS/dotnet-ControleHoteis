@@ -1,0 +1,12 @@
+﻿@model IEnumerable<ControleHoteis.Aplicacao.ViewModels.QuartoViewModel>
+
+@{
+    ViewData["Title"] = "Lista de Quartos";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p class="text-right">
+    <a class="btn btn-primary" asp-action="Create"><span class="fa fa-add"></span> Novo Quarto</a>
+</p>
+<partial name="_ListaQuartos"/>

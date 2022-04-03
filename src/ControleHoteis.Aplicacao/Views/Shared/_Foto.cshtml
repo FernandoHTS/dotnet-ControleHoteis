@@ -1,0 +1,62 @@
+﻿@model ControleHoteis.Aplicacao.ViewModels.FotoViewModel
+@{
+    ViewData["Title"] = "Cadastrar Foto";
+}
+
+<div class="modal-header">
+    <h4 class="modal-title">@ViewData["Title"]</h4>
+    <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">×</span><span class="sr-only">Fechar</span>
+    </button>
+</div>
+
+<div class="col-md-12">
+    <form enctype="multipart/form-data" asp-action="CadastrarFoto" asp-controller="Fotos" id="cadFoto">
+        <div class="modal-body">
+
+            <input type="hidden" asp-for="ProprietarioFotoId" />
+            <input type="hidden" asp-for="TipoProprietarioFoto" />
+
+
+            <div class="form-group col-md-12">
+                <label asp-for="DescricaoFoto" class="control-label"></label>
+                <textarea cols="40" rows="5" asp-for="DescricaoFoto" class="form-control"></textarea>
+                <span asp-validation-for="DescricaoFoto" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label asp-for="ImagemUploads" class="control-label"></label>
+
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="ImagemUploads" asp-for="ImagemUploads">
+                    <label data-browse="Procurar" style="width: 400px" class="custom-file-label" for="ImagemUploads"></label>
+                    <label style="display: none" id="img_nome"></label>
+                </div>
+
+                <span asp-validation-for="ImagemUploads" class="text-danger"></span>
+            </div>
+
+
+            <div class="modal-footer">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" onclick="CadastrarFoto()" value="Cadastrar" class="btn btn-success" />
+                    <input type="button" class="btn btn-info" value="Fechar" data-dismiss="modal" />
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
+<script>
+
+    $("#ImagemUploads").change(function () {
+        $("#img_nome").text(this.files[0].name);
+        $("#img_nome")[0].style.display = "block";
+    });
+
+
+</script>
+
+

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ControleHoteis.Aplicacao.ViewModels.QuartoViewModel>
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Hotel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QtdAdultos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QtdCriancas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hotel.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QtdAdultos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QtdCriancas)
+                </td>
+                <td>
+                    @item.Valor.ToString("C")
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-warning" asp-controller="Quartos" asp-action="Edit" asp-route-id="@item.Id"><span class="fa fa-pencil-alt"></span></a>
+                    <a class="btn btn-danger" asp-controller="Quartos" asp-action="Delete" asp-route-id="@item.Id"><span class="fa fa-remove"></span></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

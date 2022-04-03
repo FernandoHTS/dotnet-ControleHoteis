@@ -1,0 +1,48 @@
+﻿@using ControleHoteis.Aplicacao.Extensions
+@model IEnumerable<ControleHoteis.Aplicacao.ViewModels.HotelViewModel>
+
+@{
+    ViewData["Title"] = "Lista de Hotéis";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p class="text-right">
+    <a class="btn btn-primary" asp-action="Create"><span class="fa fa-add"></span> Novo Hotel</a>
+</p>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cnpj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @this.FormataCNPJ(item.Cnpj)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td class="text-right">                    
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><span class="fa fa-pencil-alt"></span></a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><span class="fa fa-remove"></span></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

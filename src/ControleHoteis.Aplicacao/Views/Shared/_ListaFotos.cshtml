@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ControleHoteis.Aplicacao.ViewModels.FotoViewModel>
+<div id="animated-thumbnails-gallery">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DescricaoFoto)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="~/imagens/@item.TipoProprietarioFoto/@item.Imagem">
+                            <img src="~/imagens/@item.TipoProprietarioFoto/@item.Imagem" alt="@item.Imagem" style="width:150px; height:100px" />
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DescricaoFoto)
+                    </td>
+
+                    <td class="text-right">                        
+                        <a class="btn btn-primary" href="~/imagens/@item.TipoProprietarioFoto/@item.Imagem" download="@item.Imagem"><span class="fa fa-download"></span></a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><span class="fa fa-remove"></span></a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
