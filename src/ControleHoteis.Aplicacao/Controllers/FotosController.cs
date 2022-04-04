@@ -5,9 +5,7 @@ using ControleHoteis.Negocio.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ControleHoteis.Aplicacao.Controllers
@@ -52,10 +50,7 @@ namespace ControleHoteis.Aplicacao.Controllers
             fotoAtual.ImagemUploads = fotoViewModel.ImagemUploads;
             fotoAtual.Imagem = fotoViewModel.Imagem;
 
-            await _fotoRepository.Adicionar(_mapper.Map<Foto>(fotoAtual));
-
-            //var url = Url.Action("ListarFotos", "Quartos", new { idProprietarioFoto = fotoViewModel.ProprietarioFotoId, tipoProprietarioFoto = fotoViewModel.TipoProprietarioFoto});
-            //return Json(new { success = true, url });
+            await _fotoRepository.Adicionar(_mapper.Map<Foto>(fotoAtual));            
 
             return RedirectToAction("Edit", fotoViewModel.TipoProprietarioFoto, new { Id = fotoViewModel.ProprietarioFotoId });
 
@@ -78,6 +73,18 @@ namespace ControleHoteis.Aplicacao.Controllers
             }
 
             return true;
+        }
+
+        
+        public async Task<IActionResult> DeletarFoto(Guid id)
+        {
+            var fotoViewModel = await _fotoRepository.ListarPorId(id);
+
+            if (fotoViewModel == null) return NotFound();
+
+            await _fotoRepository.Remover(fotoViewModel.Id);
+
+            return RedirectToAction("Edit", fotoViewModel.TipoProprietarioFoto, new { Id = fotoViewModel.ProprietarioFotoId });
         }
 
         public async Task<IActionResult> ListarFotos(Guid idProprietarioFoto, string tipoProprietarioFoto)

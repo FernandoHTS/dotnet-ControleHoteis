@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using ControleHoteis.Aplicacao.Data;
+﻿using AutoMapper;
 using ControleHoteis.Aplicacao.ViewModels;
 using ControleHoteis.Negocio.Interfaces;
-using AutoMapper;
 using ControleHoteis.Negocio.Models;
-using Microsoft.AspNetCore.Http;
-using System.IO;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ControleHoteis.Aplicacao.Controllers
 {
@@ -34,17 +28,7 @@ namespace ControleHoteis.Aplicacao.Controllers
         {
             return View(_mapper.Map<IEnumerable<QuartoViewModel>>(await _quartoRepository.ListarQuartosHoteis()));
         }
-
-        public async Task<IActionResult> Details(Guid id)
-        {
-            var quartoViewModel = await ListarQuarto(id);
-            if (quartoViewModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(quartoViewModel);
-        }
+                
 
         public async Task<IActionResult> CreateAsync()
         {

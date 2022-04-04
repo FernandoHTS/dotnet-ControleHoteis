@@ -1,8 +1,12 @@
-﻿function AjaxModal() {
+﻿$(document).ready(function () {
+
+    $('.cnpj').mask('00.000.000/0000-00', { reverse: true });
+
+});
+
+function AjaxModal() {
 
     $(document).ready(function () {
-
-
         $(function () {
             $.ajaxSetup({ cache: false });
 
@@ -13,37 +17,14 @@
                             $('#myModal').modal({
                                 keyboard: true
                             },
-                                'show');
-                            //bindForm(this);
+                                'show');                            
                         });
                     return false;
                 });
         });
     });
 
-    //function bindForm(dialog) {
-    //    $('#cadFoto', dialog).submit(function () {
-    //        var a = document.getElementById('cadFoto', dialog); 
-
-    //        $.ajax({
-    //            url: this.action,
-    //            type: this.method,
-    //            data: a.serialize(),
-    //            success: function (result) {
-    //                if (result.success) {
-    //                    $('#myModal').modal('hide');
-    //                    $('#EnderecoTarget').load(result.url); // Carrega o resultado HTML para a div demarcada
-    //                } else {
-    //                    $('#myModalContent').html(result);
-    //                    bindForm(dialog);
-    //                }
-    //            }
-    //        });
-
-    //        AjaxModal();
-    //        return false;
-    //    });
-    //}
+    
 }
 
 

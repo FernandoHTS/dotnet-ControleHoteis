@@ -20,10 +20,6 @@
     {
       "library": "sweetalert@2.1.2",
       "destination": "wwwroot/lib/sweetalert/"
-    },
-    {
-      "library": "lightgallery@2.4.0",
-      "destination": "wwwroot/lib/lightgallery/"
     }
   ]
 }

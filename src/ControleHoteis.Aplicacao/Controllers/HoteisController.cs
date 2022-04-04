@@ -22,40 +22,24 @@ namespace ControleHoteis.Aplicacao.Controllers
             _mapper = mapper;
         }
 
-        // GET: Hoteis
         public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<HotelViewModel>>(await _hotelRepository.ListarTodos()));
         }
+        
 
-        // GET: Hoteis/Details/5
-        public async Task<IActionResult> Details(Guid id)
-        {
-            var hotelViewModel = await ListarHotelEndereco(id);
-
-            if (hotelViewModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(hotelViewModel);
-        }
-
-        // GET: Hoteis/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Hoteis/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(HotelViewModel hotelViewModel)
         {
 
             hotelViewModel.Endereco.Complemento = hotelViewModel.Endereco.Complemento == null ? "" : hotelViewModel.Endereco.Complemento;
+            hotelViewModel.Cnpj = hotelViewModel.Cnpj.Replace(".","").Replace("/","").Replace("-","");
 
             if (!ModelState.IsValid)
                 return View(hotelViewModel);
@@ -66,7 +50,6 @@ namespace ControleHoteis.Aplicacao.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Hoteis/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
             var hotelViewModel = await ListarHotelQuartosEndereco(id);
@@ -79,15 +62,13 @@ namespace ControleHoteis.Aplicacao.Controllers
             return View(hotelViewModel);
         }
 
-        // POST: Hoteis/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, HotelViewModel hotelViewModel)
         {
 
             hotelViewModel.Endereco.Complemento = hotelViewModel.Endereco.Complemento == null ? "" : hotelViewModel.Endereco.Complemento;
+            hotelViewModel.Cnpj = hotelViewModel.Cnpj.Replace(".", "").Replace("/", "").Replace("-", "");
 
             if (id != hotelViewModel.Id)
             {
@@ -100,25 +81,9 @@ namespace ControleHoteis.Aplicacao.Controllers
             await _hotelRepository.Atualizar(hotel);
 
             return RedirectToAction("Index");
-        }
-
-        // GET: Hoteis/Delete/5
+        }        
+        
         public async Task<IActionResult> Delete(Guid id)
-        {
-            var hotelViewModel = await ListarHotelEndereco(id);
-
-            if (hotelViewModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(hotelViewModel);
-        }
-
-        // POST: Hoteis/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var hotelViewModel = await ListarHotelEndereco(id);
 

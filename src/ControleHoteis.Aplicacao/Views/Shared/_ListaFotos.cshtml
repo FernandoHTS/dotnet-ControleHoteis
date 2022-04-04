@@ -27,9 +27,12 @@
                         @Html.DisplayFor(modelItem => item.DescricaoFoto)
                     </td>
 
-                    <td class="text-right">                        
+                    <td class="text-right">
                         <a class="btn btn-primary" href="~/imagens/@item.TipoProprietarioFoto/@item.Imagem" download="@item.Imagem"><span class="fa fa-download"></span></a>
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><span class="fa fa-remove"></span></a>
+                         
+                        <a asp-action="DeletarFoto" asp-controller="Fotos" asp-route-id="@item.Id" class="btn btn-danger" style="float:right">
+                            <span title="Cadastrar Foto" class="fa fa-remove"></span>
+                        </a>                        
                     </td>
                 </tr>
             }

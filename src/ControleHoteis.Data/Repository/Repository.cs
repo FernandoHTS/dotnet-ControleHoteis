@@ -39,8 +39,7 @@ namespace ControleHoteis.Data.Repository
 
         public virtual async Task Adicionar(TEntity entity)
         {
-            //Db.Set<TEntity>().Add(entity);
-
+            
             DbSet.Add(entity);
             await SaveChanges();
         }
@@ -52,9 +51,7 @@ namespace ControleHoteis.Data.Repository
         }
 
         public virtual async Task Remover(Guid id)
-        {
-            //DbSet.Remove(await DbSet.FindAsync(id));
-            //var entity = new TEntity { Id = id };
+        {            
             DbSet.Remove(new TEntity { Id = id });
             await SaveChanges();
         }

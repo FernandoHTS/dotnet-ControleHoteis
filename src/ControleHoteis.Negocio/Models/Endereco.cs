@@ -13,9 +13,7 @@ namespace ControleHoteis.Negocio.Models
         public string Bairro { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }
-
-        /* EF Relation */
-
+               
         public Hotel Hotel { get; set; }
 
     }
