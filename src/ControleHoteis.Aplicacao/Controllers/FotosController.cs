@@ -60,7 +60,14 @@ namespace ControleHoteis.Aplicacao.Controllers
         {
             if (arquivo.Length <= 0) return false;
 
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/imagens/" + tipoProprietarioFoto, imgPrefixo + arquivo.FileName);
+            var caminho = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/imagens/" + tipoProprietarioFoto);
+
+            if (!Directory.Exists(caminho))
+            {
+                Directory.CreateDirectory(caminho);
+            }
+
+            var path = Path.Combine(Directory.GetCurrentDirectory(), caminho, imgPrefixo + arquivo.FileName);
 
             if (System.IO.File.Exists(path))
             {
