@@ -11,4 +11,5 @@ Após o clone, o clean e build solution, sempre são bem vindos. Depois disso, n
 2. Clean e Build Solution
 3. Ajuste a string de conexão no arquivo appsettings.Development.json (projeto ControleHoteis.Aplicacao)
 4. Update-Database -Context ControleHoteisContext (projeto ControleHoteis.Data)
-5. Feito! Basta executar o projeto
+5. Caso a ControleHoteis.Aplicacao não esteja definida como o projeto de inicialização: basta clicar com o botão direito do mouse nele e depois na opção => Definir como projeto de inicialização)
+6. Feito! Basta executar o projeto
